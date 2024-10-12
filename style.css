@@ -1,0 +1,281 @@
+body {
+    margin: 0;
+    max-height: 100%;
+}
+
+.container,
+.sky,
+.floor {
+    width: 100%;
+}
+
+.container {
+    height: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+body {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.sky {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 80%;
+    background: url("background/sky.png") repeat-x;
+    background-size: 1280px 100%;
+    position: absolute;
+    animation: sky 15s linear infinite;
+    animation-play-state: paused;
+}
+
+@keyframes sky {
+    0% {
+        background-position: 1280px
+    }
+
+    100% {
+        background-position: 0px
+    }
+}
+
+.mountain {
+    height: 100%;
+    width: 100%;
+    background: url("background/mountain.png") repeat-x;
+    background-size: 1000px 100%;
+    animation: mountain 20s linear infinite;
+    position: absolute;
+    animation-play-state: paused;
+}
+
+@keyframes mountain {
+    0% {
+        background-position: 1000px
+    }
+
+    100% {
+        background-position: 0
+    }
+}
+
+.floor {
+    height: 20%;
+    background: url("background/floor.png") repeat-x;
+    background-size: 750px 100%;
+    animation: floor 9s linear infinite;
+    position: absolute;
+    bottom: 0px;
+    animation-play-state: paused;
+}
+
+@keyframes floor {
+    0% {
+        background-position: 750px
+    }
+
+    100% {
+        background-position: 0
+    }
+}
+
+.bonus-heart{
+    width: 160px;
+    height: 143px;
+    background: url(colectables/heart.png);
+    z-index: 1;
+    position: absolute;
+    animation: move-enemy 5s linear;
+    bottom: 45%;
+    transform: scale(0.3);
+}
+
+.bonus-time{
+    width: 140px;
+    height: 139px;
+    background: url(colectables/time_bonus.png);
+    z-index: 1;
+    position: absolute;
+    animation: move-enemy 5s linear;
+    bottom: 45%;
+    transform: scale(0.3);
+}
+
+.player {
+    width: 48px;
+    height: 48px;
+    z-index: 1;
+    position: absolute;
+    bottom: 27%;
+    left: 100px;
+    transform: scale(3);
+}
+
+.run {
+    background: url("hero/GraveRobber_run.png") repeat-x;
+    animation: run 0.6s steps(6) infinite;
+}
+
+.jump {
+    background: url("hero/GraveRobber_jump.png");
+    animation: jump 0.9s, animate-jump 0.9s steps(6);
+}
+
+.hurt{
+    background: url("hero/GraveRobber_hurt.png");
+    animation: hurt 0.4s steps(3);
+}
+
+.dead{
+    background: url("hero/GraveRobber_death.png");
+    animation: dead 1s steps(5) forwards;
+}
+
+@keyframes jump {
+    0% {
+        transform: translateY(0) scale(3);
+    }
+
+    50% {
+        transform: translateY(-150px) scale(3);
+    }
+
+    75% {
+        transform: translateY(-150px) scale(3);
+    }
+
+    100% {
+        transform: translateY(0) scale(3);
+    }
+}
+
+@keyframes animate-jump {
+    0% {
+        background-position: 288px
+    }
+
+    100% {
+        background-position: 0px
+    }
+}
+
+@keyframes run {
+    0% {
+        background-position: 288px
+    }
+
+    100% {
+        background-position: 0px
+    }
+}
+
+@keyframes hurt {
+    0%{
+        background-position: 144px;
+    }
+
+    100%{
+        background-position: 0px;
+    }
+}
+
+@keyframes dead {
+    0%{
+        background-position: 0px;
+    }
+
+    100%{
+        background-position: -240px;
+    }
+}
+
+
+.enemy {
+    position: absolute;
+    bottom: 26%;
+    width: 96px;
+    height: 96px;
+    animation: move-enemy 5s linear, animate-enemy 0.8s steps(4) infinite;
+    transform: scale(1.8);
+    right: 20px;
+}
+
+@keyframes animate-enemy{
+    0%{
+        background-position: 384px;
+    }
+
+    100%{
+        background-position: 0px;
+    }
+}
+
+@keyframes move-enemy {
+    0% {
+        right: 0%;
+    }
+
+    100% {
+        right: 105%;
+    }
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 2
+}
+
+.game-over{
+    position: absolute;
+    border-radius: 20px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: black;
+    width: 200px;
+    height: 225px;
+    z-index: 2;
+    color: white;
+}
+
+.instructions{
+    position: absolute;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    background-color: black;
+    width: 325px;
+    height: 400px;
+    z-index: 2;
+    color: white;
+}
+
+.buttons{
+    width: 75%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#restart,#start{
+    border-radius: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+
+#start{
+    background-color: green;
+}
+
+#restart{
+    background-color: yellow;
+}
