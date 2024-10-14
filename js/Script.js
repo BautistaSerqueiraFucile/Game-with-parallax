@@ -5,6 +5,7 @@ import { Colectable } from "./Colectable.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     //inicializo valores necesarios para el inicio del juego
+    const song = document.querySelector("#music");
     let points = 0;
     let time = 60;
     let time_survived = 0;
@@ -96,11 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         currrent_bonus.delete();
                         bonuses = []
                         time += 15;
+                        timer_text.innerHTML = "Time: " + time;
                     break;
                     case 3:
                         currrent_bonus.delete();
                         bonuses = []
                         time += 15;
+                        timer_text.innerHTML = "Time: " + time;
                     break;
                 }
             }
@@ -134,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startGame() { //reiniciar todo para empezar de cero
+        startMusic();
         if(enemies.length != 0){
             enemies.forEach(enemy =>{
                 enemy.delete();
@@ -172,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function endGame() { //detengo animaciones
+        stopMusic();
         clearIntervals();
         enemies.forEach(enemy => {
             enemy.stop();
@@ -187,5 +192,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         timer_end.innerHTML = "Time survived: " + time_survived;
         points_end.innerHTML = "Points: " + points;
+    }
+
+    function startMusic() {
+        song.volume = 0.25;
+        song.play();
+    }
+
+    function stopMusic() {
+        song.pause();
+        song.currentTime = 0;
     }
 })
